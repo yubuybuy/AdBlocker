@@ -28,8 +28,11 @@ jobs:
     - name: Download iOS SDK
       run: |
         cd /opt/theos/sdks
-        sudo curl -LO https://github.com/xybp888/iOS-SDKs/raw/master/iPhoneOS16.5.sdk.tar.xz
-        sudo tar -xf iPhoneOS16.5.sdk.tar.xz
+        sudo curl -LO https://github.com/theos/sdks/archive/master.zip
+        sudo apt install -y unzip
+        sudo unzip -q master.zip
+        sudo mv sdks-master/* .
+        sudo rm -rf sdks-master master.zip
 
     - name: Build package
       run: |
