@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y git curl build-essential fakeroot perl libarchive-tools
+        sudo apt install -y git curl build-essential fakeroot perl libarchive-tools clang lld
 
     - name: Install Theos
       run: |
@@ -39,7 +39,7 @@ jobs:
         sudo mkdir -p /opt/theos/toolchain/linux/iphone/bin
         sudo ln -sf /usr/bin/clang /opt/theos/toolchain/linux/iphone/bin/clang
         sudo ln -sf /usr/bin/clang++ /opt/theos/toolchain/linux/iphone/bin/clang++
-        sudo ln -sf /usr/bin/ld /opt/theos/toolchain/linux/iphone/bin/ld
+        sudo ln -sf /usr/bin/ld.lld /opt/theos/toolchain/linux/iphone/bin/ld
         sudo ln -sf /usr/bin/ar /opt/theos/toolchain/linux/iphone/bin/ar
         sudo ln -sf /usr/bin/strip /opt/theos/toolchain/linux/iphone/bin/strip
 
