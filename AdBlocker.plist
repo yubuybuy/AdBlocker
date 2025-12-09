@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Filter</key>
+    <dict>
+        <!-- 全局注入所有应用 -->
+        <key>Mode</key>
+        <string>Any</string>
+
+        <!-- 排除系统应用 -->
+        <key>Bundles</key>
+        <array>
+            <!-- 如果只想针对特定应用，在这里添加 Bundle ID -->
+            <!-- 例如：<string>com.tencent.xin</string> -->
+        </array>
+
+        <!-- 排除列表 -->
+        <key>Executables</key>
+        <array>
+            <!-- 排除系统进程 -->
+            <string>springboard</string>
+            <string>backboardd</string>
+            <string>installd</string>
+        </array>
+    </dict>
+</dict>
+</plist>

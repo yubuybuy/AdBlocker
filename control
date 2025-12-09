@@ -1,0 +1,10 @@
+Package: com.example.adblocker
+Name: AdBlocker
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: 通用广告拦截插件 - 支持 AdMob、穿山甲、优量汇等主流广告SDK
+Maintainer: Your Name <your@email.com>
+Author: Your Name
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000), firmware (>= 11.0)
+Icon: file:///Library/PreferenceBundles/AdBlockerPrefs.bundle/icon.png

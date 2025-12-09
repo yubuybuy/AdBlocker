@@ -1,0 +1,61 @@
+name: Build iOS Tweak
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y git curl build-essential fakeroot perl libarchive-tools
+
+    - name: Install Theos
+      run: |
+        sudo git clone --recursive https://github.com/theos/theos.git /opt/theos
+        echo "THEOS=/opt/theos" >> $GITHUB_ENV
+
+    - name: Download iOS SDK
+      run: |
+        cd /opt/theos/sdks
+        sudo curl -LO https://github.com/xybp888/iOS-SDKs/raw/master/iPhoneOS16.5.sdk.tar.xz
+        sudo tar -xf iPhoneOS16.5.sdk.tar.xz
+
+    - name: Build package
+      run: |
+        export THEOS=/opt/theos
+        export PATH=$THEOS/bin:$PATH
+        make clean
+        make package
+
+    - name: Upload DEB artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: AdBlocker-DEB
+        path: packages/*.deb
+        if-no-files-found: error
+
+    - name: Get DEB filename
+      id: get_filename
+      run: |
+        DEB_FILE=$(ls packages/*.deb | head -n 1)
+        echo "deb_file=$DEB_FILE" >> $GITHUB_OUTPUT
+        echo "deb_name=$(basename $DEB_FILE)" >> $GITHUB_OUTPUT
+
+    - name: Create Release (on tag)
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: packages/*.deb
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
