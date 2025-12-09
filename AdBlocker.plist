@@ -4,24 +4,11 @@
 <dict>
     <key>Filter</key>
     <dict>
-        <!-- 全局注入所有应用 -->
-        <key>Mode</key>
-        <string>Any</string>
-
-        <!-- 排除系统应用 -->
+        <!-- 只注入到指定的应用，避免全局注入导致系统不稳定 -->
         <key>Bundles</key>
         <array>
-            <!-- 如果只想针对特定应用，在这里添加 Bundle ID -->
-            <!-- 例如：<string>com.tencent.xin</string> -->
-        </array>
-
-        <!-- 排除列表 -->
-        <key>Executables</key>
-        <array>
-            <!-- 排除系统进程 -->
-            <string>springboard</string>
-            <string>backboardd</string>
-            <string>installd</string>
+            <!-- 示例：微信，可以根据需要修改 -->
+            <!-- <string>com.tencent.xin</string> -->
         </array>
     </dict>
 </dict>

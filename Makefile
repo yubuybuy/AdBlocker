@@ -6,7 +6,7 @@ include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = AdBlocker
 
-AdBlocker_FILES = Tweak.x
+AdBlocker_FILES = Tweak-Safe.x
 AdBlocker_CFLAGS = -fobjc-arc
 AdBlocker_FRAMEWORKS = UIKit Foundation
 
