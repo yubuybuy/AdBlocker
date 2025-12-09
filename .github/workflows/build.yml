@@ -34,6 +34,15 @@ jobs:
         sudo mv sdks-master/* .
         sudo rm -rf sdks-master master.zip
 
+    - name: Setup toolchain
+      run: |
+        sudo mkdir -p /opt/theos/toolchain/linux/iphone/bin
+        sudo ln -sf /usr/bin/clang /opt/theos/toolchain/linux/iphone/bin/clang
+        sudo ln -sf /usr/bin/clang++ /opt/theos/toolchain/linux/iphone/bin/clang++
+        sudo ln -sf /usr/bin/ld /opt/theos/toolchain/linux/iphone/bin/ld
+        sudo ln -sf /usr/bin/ar /opt/theos/toolchain/linux/iphone/bin/ar
+        sudo ln -sf /usr/bin/strip /opt/theos/toolchain/linux/iphone/bin/strip
+
     - name: Build package
       run: |
         export THEOS=/opt/theos
