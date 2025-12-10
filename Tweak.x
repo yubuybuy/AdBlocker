@@ -40,7 +40,6 @@
 
 // ========== 调试：记录所有 UIView 子类 ==========
 
-static int viewCount = 0;
 static NSMutableSet *loggedClasses = nil;
 
 %hook UIView
